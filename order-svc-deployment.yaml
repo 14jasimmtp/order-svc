@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: order-svc
+  labels: 
+    app: order-svc
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: order-svc
+  template:
+    metadata:
+      labels:
+        app: order-svc
+    spec:
+      containers: 
+      - name: order-svc
+        image: muhamedjasim/order-svc:latest
+        ports:
+        - containerPort: 50053
+        env:
+          - name: PORT
+            value: ":50053"
+          - name: DB_URL
+            value: postgres://cityvibe:jasi123@postgres-service:5432/order_svc
+          - name: JWT_SECRET_KEY
+            value: r343nfse84
+
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: order-svc-service
+spec:
+  selector:
+    app: order-svc
+  ports:
+    - protocol: TCP
+      port: 50053
+      targetPort: 50053
