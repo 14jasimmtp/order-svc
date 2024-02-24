@@ -22,7 +22,7 @@ func (s *Server) CreateOrder(c context.Context, req *pb.CreateOrderRequest) (*pb
 	fmt.Println(product)
 	if err != nil {
 		return &pb.CreateOrderResponse{Status: http.StatusBadRequest, Error: err.Error()}, nil
-	} else if product.Data.Stock < req.Quantity {
+	} else if product.Data.Price < req.Quantity {
 		return &pb.CreateOrderResponse{Status: http.StatusConflict, Error: "Stock too less"}, nil
 	}
 

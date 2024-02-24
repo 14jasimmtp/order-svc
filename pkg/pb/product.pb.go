@@ -153,8 +153,9 @@ type FindOneData struct {
 
 	Id    int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name  string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Stock int64  `protobuf:"varint,3,opt,name=stock,proto3" json:"stock,omitempty"`
 	Price int64  `protobuf:"varint,4,opt,name=price,proto3" json:"price,omitempty"`
+	Stock int64  `protobuf:"varint,3,opt,name=stock,proto3" json:"stock,omitempty"`
+
 }
 
 func (x *FindOneData) Reset() {
