@@ -19,7 +19,7 @@ type Server struct {
 
 func (s *Server) CreateOrder(c context.Context, req *pb.CreateOrderRequest) (*pb.CreateOrderResponse, error) {
 	product, err := s.ProductSvc.FindOne(req.ProductId)
-	fmt.Println(product.Data.Id,req.Quantity)
+	fmt.Println(product.Data,req.Quantity)
 	if err != nil {
 		return &pb.CreateOrderResponse{Status: http.StatusBadRequest, Error: err.Error()}, nil
 	} else if product.Data.Stock < req.Quantity {
